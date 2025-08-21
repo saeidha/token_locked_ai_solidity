@@ -12,3 +12,7 @@ import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
  * @notice A contract for time-locking a specific ERC20 token.
  * Users can lock tokens for a chosen duration and withdraw them only after the lock expires.
  */
+
+contract LockToken is Ownable, Pausable {
+    using SafeERC20 for IERC20;
+

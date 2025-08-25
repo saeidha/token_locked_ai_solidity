@@ -109,3 +109,15 @@ contract StakeAndLoanTest is Test {
         assertEq(collateralToken.balanceOf(user), 100 ether); // Back to original balance
         vm.stopPrank();
     }
+    
+    /**
+     * @dev Tests liquidation of an undercollateralized position.
+     */
+
+    function testLiquidate() public {
+        // User stakes and borrows
+        vm.startPrank(user);
+        collateralToken.approve(address(stakeAndLoan), 10 ether);
+        stakeAndLoan.stake(10 ether);
+        stakeAndLoan.borrow(15000 ether); // Borrow a large amount
+        vm.stopPrank();
